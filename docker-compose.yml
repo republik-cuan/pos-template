@@ -1,0 +1,58 @@
+version: "3"
+
+networks:
+  app-networks:
+    driver: bridge
+
+volumes:
+  dbdata:
+
+services:
+  # PHP Service
+  app:
+    build:
+      context: ./
+      dockerfile: app.dockerfile
+    container_name: webapp
+    working_dir: /var/www
+    volumes:
+      - ./src:/var/www
+    environment:
+      - "DB_PORT=3306"
+      - "DB_HOST=database"
+    networks:
+      - app-networks
+  # NGINX Service
+  web:
+    build:
+      context: ./
+      dockerfile: web.dockerfile
+    container_name: webserver
+    working_dir: /var/www
+    volumes:
+      - ./src:/var/www
+    ports:
+      - 8000:80
+    networks:
+      - app-networks
+  # MARIADB Service
+  database:
+    image: mysql:5.7
+    container_name: db
+    volumes:
+      - dbdata:/var/lib/mysql
+    environment:
+      - "MYSQL_DATABASE=coba"
+      - "MYSQL_ROOT_PASSWORD=admin123"
+    ports:
+      - "3306:3306"
+    networks:
+      - app-networks
+  # PHPMyAdmin Service
+  dbpanel:
+    image: phpmyadmin/phpmyadmin
+    container_name: db_panel
+    ports:
+      - 4000:80
+    depends_on:
+      - database
