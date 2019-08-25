@@ -1,5 +1,5 @@
-FROM nginx:1.10-alpine
+FROM nginx:1.10
 
 MAINTAINER "saifoelloh@gmail.com"
 
-ADD vhost.conf /etc/nginx/conf.d/default.conf
+ADD ./vhost.conf /etc/nginx/conf.d/default.conf

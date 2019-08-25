@@ -56,3 +56,5 @@ services:
       - 4000:80
     depends_on:
       - database
+    networks:
+      - app-networks
