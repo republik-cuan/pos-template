@@ -13,9 +13,9 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 2',
+    'title' => 'Point Of Sale',
 
-    'title_prefix' => '',
+    'title_prefix' => 'POS | ',
 
     'title_postfix' => '',
 
@@ -30,9 +30,9 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
+    'logo' => '<b>Point</b> of Sale',
 
-    'logo_mini' => '<b>A</b>LT',
+    'logo_mini' => '<b>P</b>oS',
 
     /*
     |--------------------------------------------------------------------------
@@ -113,78 +113,79 @@ return [
         ],
         ['header' => 'main_navigation'],
         [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
+            'text' => 'Dashboard',
+            'icon' => 'fas fa-tachometer-alt'
         ],
         [
-            'text'        => 'pages',
+            'text'        => 'Admin',
             'url'         => 'admin/pages',
-            'icon'        => 'far fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
+            'icon'        => 'fas fa-user-secret',
         ],
-        ['header' => 'account_settings'],
+        ['header' => 'INVENTORIES'],
         [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
+            'text'    => 'Item',
+            'icon'    => 'fas fa-box-open',
             'submenu' => [
                 [
-                    'text' => 'level_one',
+                    'text' => 'List Item',
                     'url'  => '#',
+                    'icon' => '',
                 ],
                 [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'level_one',
+                    'text' => 'Create Item',
                     'url'  => '#',
+                    'icon' => '',
                 ],
             ],
         ],
-        ['header' => 'labels'],
         [
-            'text'       => 'important',
-            'icon_color' => 'red',
+            'text'    => 'Type',
+            'icon'    => 'fas fa-boxes',
+            'submenu' => [
+                [
+                    'text' => 'List Type',
+                    'url'  => '#',
+                    'icon' => '',
+                ],
+                [
+                    'text' => 'Create Type',
+                    'url'  => '#',
+                    'icon' => '',
+                ],
+            ],
+        ],
+        ['header' => 'TRANSACTION'],
+        [
+            'text'    => 'Customer',
+            'icon'    => 'fas fa-users',
+            'submenu' => [
+                [
+                    'text' => 'List Type',
+                    'url'  => '#',
+                    'icon' => '',
+                ],
+                [
+                    'text' => 'Create Type',
+                    'url'  => '#',
+                    'icon' => '',
+                ],
+            ],
         ],
         [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-        ],
-        [
-            'text'       => 'information',
-            'icon_color' => 'aqua',
+            'text'    => 'Purchases',
+            'icon'    => 'fas fa-dolly',
+            'submenu' => [
+                [
+                    'text' => 'List Type',
+                    'url'  => '#',
+                    'icon' => '',
+                ],
+                [
+                    'text' => 'Create Type',
+                    'url'  => '#',
+                    'icon' => '',
+                ],
+            ],
         ],
     ],
 
@@ -286,7 +287,8 @@ return [
                 [
                     'type' => 'css',
                     'asset' => false,
-                    'location' => '//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/blue/pace-theme-center-radar.min.css',
+                    /* 'location' => '//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/blue/pace-theme-center-radar.min.css', */
+                      'location' => '//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/orange/pace-theme-center-simple.min.css'
                 ],
                 [
                     'type' => 'js',
