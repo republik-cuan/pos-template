@@ -15,7 +15,7 @@ return [
 
     'title' => 'Point Of Sale',
 
-    'title_prefix' => 'POS | ',
+    'title_prefix' => 'PoS | ',
 
     'title_postfix' => '',
 
