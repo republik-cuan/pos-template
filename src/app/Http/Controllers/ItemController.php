@@ -14,7 +14,12 @@ class ItemController extends Controller
      */
     public function index()
     {
-        //
+      $items = Item::all();
+
+      return $items;
+      /* return view('pages.item.index', [ */
+      /*   'items' => $items, */
+      /* ]); */
     }
 
     /**
@@ -24,7 +29,7 @@ class ItemController extends Controller
      */
     public function create()
     {
-        //
+      return view('pages.item.create');
     }
 
     /**
@@ -35,7 +40,22 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      try {
+        $validatedData = $request->validate([
+          'name' => 'unique:items|required',
+          'price' => 'required',
+          'stock' => 'required',
+        ]);
+
+        Item::create($validatedData);
+      } catch (Exception $e) {
+        return abort(404, $e);
+      } finally {
+        return response()->json([
+          'message' => 'success creating item',
+        ]);
+        /* return redirect()->route('item'); */
+      }
     }
 
     /**
@@ -44,7 +64,7 @@ class ItemController extends Controller
      * @param  \App\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function show(Item $item)
+    public function show($id)
     {
         //
     }
@@ -55,9 +75,14 @@ class ItemController extends Controller
      * @param  \App\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function edit(Item $item)
+    public function edit($id)
     {
-        //
+      $item = Item::find($id);
+
+      return $item;
+      /* return view('pages.item.edit', [ */
+      /*   'item' => $item, */
+      /* ]); */
     }
 
     /**
@@ -67,9 +92,26 @@ class ItemController extends Controller
      * @param  \App\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Item $item)
+    public function update(Request $request, $id)
     {
-        //
+      try {
+        $validatedData = $request->validate([
+          'name' => 'unique:items|required',
+          'price' => 'required',
+          'stock' => 'required',
+          'sold' => 'required',
+        ]);
+
+        $user = Item::where('id', $id)->update($validatedData);
+      } catch (Exception $e) {
+        return abort(404, $e);
+      } finally {
+        return response()->json([
+          'message' => 'success updating item',
+          'user' => $user,
+        ]);
+        /* return redirect()->route('item'); */
+      }
     }
 
     /**
@@ -78,8 +120,17 @@ class ItemController extends Controller
      * @param  \App\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Item $item)
+    public function destroy($id)
     {
-        //
+      try {
+        Item::destroy($id);
+      } catch (Exception $e) {
+        return abort(404, $e);
+      } finally {
+        return response()->json([
+          'message' => 'success removing item',
+        ]);
+        /* return redirect()->route('item'); */
+      }
     }
 }
