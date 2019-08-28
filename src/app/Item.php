@@ -12,4 +12,8 @@ class Item extends Model
     'stock',
     'sold',
   ];
+
+  public function purchases() {
+    return $this->belongsToMany(Purchase::class);
+  }
 }
