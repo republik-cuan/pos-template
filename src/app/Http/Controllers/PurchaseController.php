@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Customer;
 use App\Purchase;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,11 @@ class PurchaseController extends Controller
      */
     public function index()
     {
-        //
+      $purchases = Purchase::with('customer')->get();
+
+      return view('pages.purchase.index', [
+        'purchases' => $purchases,
+      ]);
     }
 
     /**
@@ -24,7 +29,11 @@ class PurchaseController extends Controller
      */
     public function create()
     {
-        //
+      $customers = Customer::all();
+
+      return view('pages.purchase.create', [
+        'customers' => $customers,
+      ]);
     }
 
     /**
@@ -35,7 +44,15 @@ class PurchaseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $customer = Customer::find($request->customer);
+
+      try {
+        $customer->purchases()->create();
+      } catch (Exception $e) {
+        return abort(404, $e);
+      }
+
+      return redirect()->route('customer.edit', $customer->id);
     }
 
     /**
@@ -44,7 +61,7 @@ class PurchaseController extends Controller
      * @param  \App\Purchase  $purchase
      * @return \Illuminate\Http\Response
      */
-    public function show(Purchase $purchase)
+    public function show($id)
     {
         //
     }
@@ -55,9 +72,13 @@ class PurchaseController extends Controller
      * @param  \App\Purchase  $purchase
      * @return \Illuminate\Http\Response
      */
-    public function edit(Purchase $purchase)
+    public function edit($id)
     {
-        //
+      $purchase = Purchase::with('customer')->where('id', $id);
+
+      return view('pages.purchase.edit', [
+        'purchase' => $purchase,
+      ]);
     }
 
     /**
@@ -67,9 +88,16 @@ class PurchaseController extends Controller
      * @param  \App\Purchase  $purchase
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Purchase $purchase)
+    public function update(Request $request, $id)
     {
-        //
+      $purchase = Purchase::with('customer', $id)->first();
+      try {
+        $purchase->update($request);
+      } catch (Exception $e) {
+        return abort(404, $e);
+      }
+
+      return redirect()->route('customer.edit', $purchase->customer->id);
     }
 
     /**
@@ -78,8 +106,16 @@ class PurchaseController extends Controller
      * @param  \App\Purchase  $purchase
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Purchase $purchase)
+    public function destroy($id)
     {
-        //
+      $purchase = Purchase::find($id);
+      $customer = $purchase->customer;
+      try {
+        $purchase->delete();
+      } catch (Exception $e) {
+        return abort(404, $e);
+      }
+
+      return redirect()->route('customer.edit', $customer->id);
     }
 }

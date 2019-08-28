@@ -16,10 +16,9 @@ class ItemController extends Controller
     {
       $items = Item::all();
 
-      return $items;
-      /* return view('pages.item.index', [ */
-      /*   'items' => $items, */
-      /* ]); */
+      return view('pages.item.index', [
+        'items' => $items,
+      ]);
     }
 
     /**
@@ -46,16 +45,13 @@ class ItemController extends Controller
           'price' => 'required',
           'stock' => 'required',
         ]);
-
-        Item::create($validatedData);
       } catch (Exception $e) {
         return abort(404, $e);
       } finally {
-        return response()->json([
-          'message' => 'success creating item',
-        ]);
-        /* return redirect()->route('item'); */
+        Item::create($validatedData);
       }
+
+      return redirect()->route('item');
     }
 
     /**
@@ -79,10 +75,9 @@ class ItemController extends Controller
     {
       $item = Item::find($id);
 
-      return $item;
-      /* return view('pages.item.edit', [ */
-      /*   'item' => $item, */
-      /* ]); */
+      return view('pages.item.edit', [
+        'item' => $item,
+      ]);
     }
 
     /**
@@ -101,17 +96,13 @@ class ItemController extends Controller
           'stock' => 'required',
           'sold' => 'required',
         ]);
-
-        $user = Item::where('id', $id)->update($validatedData);
       } catch (Exception $e) {
         return abort(404, $e);
       } finally {
-        return response()->json([
-          'message' => 'success updating item',
-          'user' => $user,
-        ]);
-        /* return redirect()->route('item'); */
+        Item::where('id', $id)->update($validatedData);
       }
+
+      return redirect()->route('item');
     }
 
     /**
@@ -123,14 +114,11 @@ class ItemController extends Controller
     public function destroy($id)
     {
       try {
-        Item::destroy($id);
+        Item::where('id', $id)->delete();
       } catch (Exception $e) {
         return abort(404, $e);
-      } finally {
-        return response()->json([
-          'message' => 'success removing item',
-        ]);
-        /* return redirect()->route('item'); */
       }
+
+      return redirect()->route('item');
     }
 }

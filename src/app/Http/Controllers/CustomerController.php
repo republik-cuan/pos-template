@@ -14,10 +14,10 @@ class CustomerController extends Controller
      */
     public function index()
     {
-      $users = Customer::all();
+      $customers = Customer::all();
 
       return view('pages.customer.index', [
-        'customers' => $customer,
+        'customers' => $customers,
       ]);
     }
 
@@ -46,12 +46,15 @@ class CustomerController extends Controller
           'email' => 'unique:customers|required',
           'gender' => 'required',
         ]);
-        Customer::create($validatedData);
       } catch (Exception $e) {
-        return abort(404, $e);
+        return response()->json([
+          'msg' => 'error guys',
+          'error' => $e,
+        ]);
       } finally {
-        return redirect()->route('customer');
+        Customer::create($validatedData);
       }
+      return redirect()->route('customer');
     }
 
     /**
@@ -96,12 +99,12 @@ class CustomerController extends Controller
           'email' => 'unique:customers|required',
           'gender' => 'required',
         ]);
-        Customer::where('id', $id)->update($validatedData);
       } catch (Exception $e) {
         return abort(404, $e);
       } finally {
-        return redirect()->route('customer');
+        Customer::where('id', $id)->update($validatedData);
       }
+      return redirect()->route('customer');
     }
 
     /**
@@ -112,8 +115,9 @@ class CustomerController extends Controller
      */
     public function destroy($id)
     {
+      $customer = Customer::find($id);
       try {
-        Customer::destroy($id);
+        $customer->delete();
       } catch (Exception $e) {
         return abort(404, $e);
       } finally {
