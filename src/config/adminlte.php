@@ -108,19 +108,24 @@ return [
 
     'menu' => [
         [
-            'text' => 'search',
-            'search' => true,
+          'text' => 'search',
+          'search' => true,
         ],
         ['header' => 'main_navigation'],
         [
-            'text'    => 'Dashboard',
-            'icon'    => 'fas fa-tachometer-alt',
-            'url'     => 'dashboard'
+          'text'    => 'Dashboard',
+          'icon'    => 'fas fa-tachometer-alt',
+          'url'     => 'dashboard'
         ],
         [
-            'text'    => 'Admin',
-            'url'     => 'admin/pages',
-            'icon'    => 'fas fa-user-secret',
+          'text'    => 'Admin',
+          'url'     => 'admin/pages',
+          'icon'    => 'fas fa-user-secret',
+        ],
+        [
+          'text'    => 'Category',
+          'icon'    => 'fas fa-tags',
+          'url'     => 'category',
         ],
         [
           'text'    => 'Customer',
@@ -128,14 +133,19 @@ return [
           'url'     => 'customer',
         ],
         [
-            'text'    => 'Item',
-            'icon'    => 'fas fa-box-open',
-            'url'     => 'item',
+          'text'    => 'Item',
+          'icon'    => 'fas fa-box-open',
+          'url'     => 'item',
         ],
         [
-            'text'    => 'Purchases',
-            'icon'    => 'fas fa-dolly',
-            'url'     => 'purchase',
+          'text'    => 'Purchases',
+          'icon'    => 'fas fa-cash-register',
+          'url'     => 'purchase',
+        ],
+        [
+          'text'    => 'Supplier',
+          'icon'    => 'fas fa-dolly',
+          'url'     => 'supplier',
         ],
     ],
 
