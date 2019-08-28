@@ -17,5 +17,49 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('dashboard', 'HomeController@index')->name('home');
 Route::get('/hello', 'HomeController@index')->name('hello');
+
+Route::group([
+  'as' => 'admin',
+  'prefix' => 'admin',
+], function() {
+  Route::get('/', 'AdminController@index');
+  Route::post('/', 'AdminController@store')->name('.store');
+  Route::get('/{id}', 'AdminController@edit')->name('.edit');
+  Route::put('/{id}', 'AdminController@update')->name('.update');
+  Route::delete('/{id}', 'AdminController@destroy')->name('.destroy');
+});
+
+Route::group([
+  'as' => 'item',
+  'prefix' => 'item',
+], function() {
+  Route::get('/', 'ItemController@index');
+  Route::post('/', 'ItemController@store')->name('.store');
+  Route::get('/{id}', 'ItemController@edit')->name('.edit');
+  Route::put('/{id}', 'ItemController@update')->name('.update');
+  Route::delete('/{id}', 'ItemController@destroy')->name('.destroy');
+});
+
+Route::group([
+  'as' => 'customer',
+  'prefix' => 'customer',
+], function() {
+  Route::get('/', 'CustomerController@index');
+  Route::post('/', 'CustomerController@store')->name('.store');
+  Route::get('/{id}', 'CustomerController@edit')->name('.edit');
+  Route::put('/{id}', 'CustomerController@update')->name('.update');
+  Route::delete('/{id}', 'CustomerController@destroy')->name('.destroy');
+});
+
+Route::group([
+  'as' => 'purchase',
+  'prefix' => 'purchase',
+], function() {
+  Route::get('/', 'PurchaseController@index');
+  Route::post('/', 'PurchaseController@store')->name('.store');
+  Route::get('/{id}', 'PurchaseController@edit')->name('.edit');
+  Route::put('/{id}', 'PurchaseController@update')->name('.update');
+  Route::delete('/{id}', 'PurchaseController@destroy')->name('.destroy');
+});
