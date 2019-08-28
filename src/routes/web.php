@@ -63,3 +63,25 @@ Route::group([
   Route::put('/{id}', 'PurchaseController@update')->name('.update');
   Route::delete('/{id}', 'PurchaseController@destroy')->name('.destroy');
 });
+
+Route::group([
+  'as' => 'category',
+  'prefix' => 'category',
+], function() {
+  Route::get('/', 'CategoryController@index');
+  Route::post('/', 'CategoryController@store')->name('.store');
+  Route::get('/{id}', 'CategoryController@edit')->name('.edit');
+  Route::put('/{id}', 'CategoryController@update')->name('.update');
+  Route::delete('/{id}', 'CategoryController@destroy')->name('.destroy');
+});
+
+Route::group([
+  'as' => 'supplier',
+  'prefix' => 'supplier',
+], function() {
+  Route::get('/', 'SupplierController@index');
+  Route::post('/', 'SupplierController@store')->name('.store');
+  Route::get('/{id}', 'SupplierController@edit')->name('.edit');
+  Route::put('/{id}', 'SupplierController@update')->name('.update');
+  Route::delete('/{id}', 'SupplierController@destroy')->name('.destroy');
+});
