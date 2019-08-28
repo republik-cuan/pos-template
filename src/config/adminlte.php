@@ -128,11 +128,6 @@ return [
             'icon'    => 'fas fa-box-open',
             'url'     => 'item',
         ],
-        [
-            'text'    => 'Type',
-            'icon'    => 'fas fa-boxes',
-            'url'     => 'type',
-        ],
         ['header' => 'TRANSACTION'],
         [
             'text'    => 'Customer',
