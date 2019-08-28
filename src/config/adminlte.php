@@ -122,17 +122,15 @@ return [
             'url'     => 'admin/pages',
             'icon'    => 'fas fa-user-secret',
         ],
-        ['header' => 'INVENTORIES'],
+        [
+          'text'    => 'Customer',
+          'icon'    => 'fas fa-users',
+          'url'     => 'customer',
+        ],
         [
             'text'    => 'Item',
             'icon'    => 'fas fa-box-open',
             'url'     => 'item',
-        ],
-        ['header' => 'TRANSACTION'],
-        [
-            'text'    => 'Customer',
-            'icon'    => 'fas fa-users',
-            'url'     => 'customer',
         ],
         [
             'text'    => 'Purchases',
