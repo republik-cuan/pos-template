@@ -113,79 +113,36 @@ return [
         ],
         ['header' => 'main_navigation'],
         [
-            'text' => 'Dashboard',
-            'icon' => 'fas fa-tachometer-alt'
+            'text'    => 'Dashboard',
+            'icon'    => 'fas fa-tachometer-alt',
+            'url'     => 'dashboard'
         ],
         [
-            'text'        => 'Admin',
-            'url'         => 'admin/pages',
-            'icon'        => 'fas fa-user-secret',
+            'text'    => 'Admin',
+            'url'     => 'admin/pages',
+            'icon'    => 'fas fa-user-secret',
         ],
         ['header' => 'INVENTORIES'],
         [
             'text'    => 'Item',
             'icon'    => 'fas fa-box-open',
-            'submenu' => [
-                [
-                    'text' => 'List Item',
-                    'url'  => '#',
-                    'icon' => '',
-                ],
-                [
-                    'text' => 'Create Item',
-                    'url'  => '#',
-                    'icon' => '',
-                ],
-            ],
+            'url'     => 'item',
         ],
         [
             'text'    => 'Type',
             'icon'    => 'fas fa-boxes',
-            'submenu' => [
-                [
-                    'text' => 'List Type',
-                    'url'  => '#',
-                    'icon' => '',
-                ],
-                [
-                    'text' => 'Create Type',
-                    'url'  => '#',
-                    'icon' => '',
-                ],
-            ],
+            'url'     => 'type',
         ],
         ['header' => 'TRANSACTION'],
         [
             'text'    => 'Customer',
             'icon'    => 'fas fa-users',
-            'submenu' => [
-                [
-                    'text' => 'List Type',
-                    'url'  => '#',
-                    'icon' => '',
-                ],
-                [
-                    'text' => 'Create Type',
-                    'url'  => '#',
-                    'icon' => '',
-                ],
-            ],
+            'url'     => 'customer',
         ],
         [
             'text'    => 'Purchases',
             'icon'    => 'fas fa-dolly',
-            'submenu' => [
-                [
-                    'text' => 'List Type',
-                    'url'  => '#',
-                    'icon' => '',
-                ],
-                [
-                    'text' => 'Create Type',
-                    'url'  => '#',
-                    'icon' => '',
-                ],
-            ],
+            'url'     => 'purchase',
         ],
     ],
 
